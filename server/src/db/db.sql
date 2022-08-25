@@ -11,6 +11,7 @@ CREATE TABLE collections(
 CREATE TABLE cards(
     cardID INT AUTO_INCREMENT PRIMARY KEY,
     collectionID INT NOT NULL,
+    userID INT NOT NULL,
     frontSide VARCHAR(255) NOT NULL,
     backSide VARCHAR(255) NOT NULL
 );
