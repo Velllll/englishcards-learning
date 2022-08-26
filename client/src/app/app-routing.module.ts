@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'learn', 
     loadChildren: () => import('./modules/cards/cards.module').then(m => m.CardsModule)
   },
+  {
+    path: 'authorization', 
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+  },
   {path: '**', redirectTo: 'learn', pathMatch: 'full'},
 ];
 

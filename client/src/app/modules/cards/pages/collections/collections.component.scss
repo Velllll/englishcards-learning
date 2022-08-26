@@ -1,0 +1,103 @@
+.container {
+    height: 100%;
+    .collection {
+        margin: 20px 0;
+        .title {
+            margin-left: 10px;
+            font-size: 30px;
+        }
+
+        .line {
+            margin: 10px 0;
+            width: 80%;
+            height: 2px;
+            background-color: #b85c38;
+        }
+
+        .collection-row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            .collection-card {
+                cursor: pointer;
+                margin: 10px 0;
+                height: 200px;
+                width: 150px;
+                background-color: rgb(252, 249, 249);
+                border-radius: 30px;
+                padding: 10px;
+                color: rgb(0, 0, 0);
+
+                .name {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 140px;
+                    font-size: 20px;
+                }
+
+                .date {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    font-size: 15px;
+                }
+
+            }
+        }
+    }
+}
+
+
+.skeleton-container {
+    height: 100%;
+    .collection {
+        margin: 20px 0;
+        .title {
+            height: 30px;
+            font-size: 30px;
+            margin-left: 10px;
+        }
+
+        .line {
+            margin: 10px 0;
+            width: 80%;
+            height: 2px;
+            background-color: #b85c38;
+        }
+
+        .collection-row {
+            display: grid;
+            place-items: center;
+            grid-template-columns: 1fr 1fr;
+            .collection-card {
+                cursor: pointer;
+                margin: 10px 0;
+                height: 200px;
+                width: 150px;
+                background-color: rgb(252, 249, 249);
+                border-radius: 30px;
+                padding: 10px;
+                color: #2c2525;
+
+                .name {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 140px;
+                    font-size: 20px;
+                }
+
+                .date {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 40px;
+                    font-size: 15px;
+                }
+
+            }
+        }
+    }
+}

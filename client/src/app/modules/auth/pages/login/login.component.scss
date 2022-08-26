@@ -1,0 +1,70 @@
+.body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    .window-form {
+        padding: 20px;
+        color: rgb(255, 255, 255);
+        height: 700px;
+        width: 370px;
+        margin-top: 100px;
+
+        h2 {    
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 70px;
+        }
+
+        form {
+            text-align: center;
+            input {
+                width: 80%;
+                margin: 10px 0;
+                background-color:rgb(241, 240, 240);
+                line-height: 40px;
+                font-size: 30px;
+                padding: 0 10px;
+                border-radius: 10px;
+            }
+
+            .err {
+                margin-bottom: 30px;
+                text-align: center;
+                width: 100%;
+            }
+
+            .btn {
+                text-align: center;
+                button {
+                    padding: 0 20px;
+                    font-size: 30px;
+                    line-height: 50px;
+                    text-align: center;
+                    background-color:rgb(0, 0, 0);
+                    color: rgb(255, 255, 255);
+
+                    &:disabled {
+                        background-color:rgb(65, 65, 65);
+                        color: rgb(184, 184, 184);
+                    }
+                }
+            }
+        }
+
+        .register {
+            margin-top: 30px;
+            text-align: center;
+            span {
+                font-size: 20px;
+            }
+
+            a {
+                font-size: 20px;
+                color: rgb(255, 255, 255);
+                text-decoration: underline;
+            }
+        }
+    }
+}
