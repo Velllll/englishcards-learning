@@ -5,11 +5,14 @@ import { CollectionsComponent } from './pages/collections/collections.component'
 import { MainComponent } from './pages/main/main.component';
 
 const routes: Routes = [
+  
   {path: '', component: MainComponent, children: [
     {path: 'collections', component: CollectionsComponent},
     {path: 'collections/:collectionName', component: CardsComponent},
-    {path: '**', redirectTo: 'collection', pathMatch: 'full'},
+    {path: '**', redirectTo: 'collections', pathMatch: 'full'},
+    {path: '', redirectTo: 'collections', pathMatch: 'full'},
   ]},
+  
 ];
 
 @NgModule({

@@ -1,81 +1,19 @@
 <div class="container" *ngIf="collections$ | async as collections; else skeleton">
+    <app-collections-block 
+    (open)="openCollection($event)" 
+    [date]="'Learn Today'" 
+    [collections]="collections.today"></app-collections-block>
+
+    <app-collections-block 
+    (open)="openCollection($event)" 
+    [collections]="collections.late"></app-collections-block>
     
-    <div class="collection" *ngIf="collections.today.length">
-        <div class="title">
-            Learn today
-        </div>
-        <div class="line"></div>
-        <div class="collection-row">
-            <div class="collection-card" *ngFor="let collection of collections.today">
-                <div class="info" (click)="openCollection(collection.collectionID)">
-                    <div class="name">
-                        {{collection.name}}
-                    </div>
-                    <div class="date">
-                        Today
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="collection" *ngIf="collections.late.length">
-        <div class="title">
-            Learn Late
-        </div>
-        <div class="line"></div>
-        <div class="collection-row">
-            <div class="collection-card" *ngFor="let collection of collections.late">
-                <div class="info" (click)="openCollection(collection.collectionID)">
-                    <div class="name">
-                        {{collection.name}}
-                    </div>
-                    <div class="date">
-                        {{getDate(collection.repeatDates)}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="collection" *ngIf="collections.notStarted.length">
-        <div class="title">
-            Not Started
-        </div>
-        <div class="line"></div>
-        <div class="collection-row">
-            <div class="collection-card" *ngFor="let collection of collections.notStarted">
-                <div class="info" (click)="openCollection(collection.collectionID)">
-                    <div class="name">
-                        {{collection.name}}
-                    </div>
-                    <div class="date">
-                        Not Started
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <app-collections-block 
+    (open)="openCollection($event)" 
+    [date]="'Not Started'" 
+    [collections]="collections.notStarted"></app-collections-block>
 </div>
 
 <ng-template #skeleton>
-    <div class="skeleton-container">
-        <div class="collection">
-            <div class="title">
-                
-            </div>
-            <div class="line"></div>
-            <div class="collection-row">
-                <div class="collection-card" *ngFor="let a of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]">
-                    <div class="name">
-                        
-                    </div>
-                    <div class="date">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-collections-skeleton></app-collections-skeleton>
 </ng-template>
