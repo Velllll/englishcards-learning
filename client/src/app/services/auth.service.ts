@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   isLogin() {
-    return this.http.get<any>('http://localhost:5000/api/islogin', {
+    return this.http.get<any>('http://localhost:5000/auth/islogin', {
       headers: {"Authorization": "Bearer " + this.getToken()}
     })
     .pipe(
