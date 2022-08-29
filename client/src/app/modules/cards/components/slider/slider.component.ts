@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ICard } from '../../interfaces/cards.interface';
 
 @Component({
@@ -17,19 +17,24 @@ import { ICard } from '../../interfaces/cards.interface';
     ]),
   ]
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnChanges {
 
   @Input() cards!: ICard[]
   @Input() side!: string
+  @Input() position!: number
   cardSide!: string
 
-  position: number = 0
   animationState = 'front'
   
   constructor() { }
 
   ngOnInit(): void { 
     this.cardSide = this.side
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const side = changes['side'].currentValue
+    this.cardSide = side
   }
 
   next() {

@@ -33,6 +33,9 @@ export class CardsComponent implements OnInit {
   cards: ICard[] = []
   newCardForm!: FormGroup
 
+  side = 'front'
+  position = 0
+
   constructor(
     private cardsService: CardsService,
     private router: Router,
@@ -71,6 +74,15 @@ export class CardsComponent implements OnInit {
       }
     })
     this.modalStateControll()
+  }
+
+  flipCards() {
+    this.side = this.side === 'front' ? 'back' : 'front'
+  }
+
+  shuffleCards() {
+    this.position = 0
+    this.cards.sort(() => Math.random() - 0.5);
   }
 
 }
