@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CollectionService {
 
   constructor(

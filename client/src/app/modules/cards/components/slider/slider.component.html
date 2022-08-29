@@ -1,0 +1,21 @@
+<div class="slider-containder">
+    <div class="navigate prev" (click)="prev()"><</div>
+
+    <div class="card" *ngIf="cards.length" (click)="flipCard()" [@card]="animationState">
+        <div class="front" *ngIf="cardSide === 'front'">{{cards[position].frontSide}}</div>
+        <div class="back" *ngIf="cardSide === 'back'">{{cards[position].backSide}}</div>
+    </div>
+
+    <div class="navigate next" (click)="next()">></div>
+</div>
+
+<div class="amount">
+    <div class="pos">
+        {{position + 1}}
+    </div>
+    <span >/</span>
+    <div class="pos">
+        {{cards.length}}
+    </div>
+
+</div>

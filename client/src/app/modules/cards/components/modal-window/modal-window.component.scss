@@ -1,0 +1,29 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .window {
+        width: 70%;
+        max-width: 500px;
+        background-color: #f0ddc4;
+        padding: 20px;
+        position: relative;
+        border-radius: 20px;
+        color: #2c2525;
+
+        .close{
+            color: #2c2525;
+            cursor: pointer;
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 15px;
+        }
+    }
+}

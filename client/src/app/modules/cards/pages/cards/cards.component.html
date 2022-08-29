@@ -1,1 +1,34 @@
-<p>cards works!</p>
+<div class="container">
+    <div class="buttons-container">
+        <button class="add-card" (click)="modalStateControll()">Add Card</button>
+        <button class="shufle" >Shufle</button>
+        <button class="filp" >Filp</button>
+    </div>
+
+    <div class="slider" *ngIf="cards.length; else empty" >
+        <app-slider [cards]="cards" [side]="'back'"></app-slider>
+    </div>
+
+    <ng-template #empty>
+        <div class="warning">
+            You do not have cards for learn! Add new card
+        </div>
+    </ng-template>
+</div>
+
+<!-- <app-modal-window  
+    (close)="modalStateControll()" 
+    *ngIf="modalState" 
+    [@modal]="modalAnimationState"
+>
+    <div class="title">
+        Add new card
+    </div>
+    <form [formGroup]="newCardForm" class="form">
+        Front side<input formControlName="front" type="text">
+        Back side<input formControlName="back" type="text">
+    </form>
+    <div class="btn">
+        <button [disabled]="newCardForm.invalid" (click)="addCard()">Add card</button>
+    </div>
+</app-modal-window> -->

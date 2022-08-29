@@ -9,8 +9,9 @@ class CardsController {
             userID, frontSide,
             backSide
         ])
-        .then(() => {
-            res.json({message: "card created"})
+        .then(data => {
+            const newCardID = data[0].insertId
+            res.json({cardID: newCardID})
         })
         .catch(err => {
             console.log(err)

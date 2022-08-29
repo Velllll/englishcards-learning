@@ -1,0 +1,65 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component, Input, OnInit } from '@angular/core';
+import { ICard } from '../../interfaces/cards.interface';
+
+@Component({
+  selector: 'app-slider [cards] [side]',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.scss'],
+  animations: [
+    trigger('card', [
+      state('front', style({})),
+      state('back', style({})),
+      transition('front <=> back', [
+        style({opacity: 0.2}),
+        animate(100, style({opacity: 1}))
+      ])
+    ]),
+  ]
+})
+export class SliderComponent implements OnInit {
+
+  @Input() cards!: ICard[]
+  @Input() side!: string
+  cardSide!: string
+
+  position: number = 0
+  animationState = 'front'
+  
+  constructor() { }
+
+  ngOnInit(): void { 
+    this.cardSide = this.side
+  }
+
+  next() {
+    if(this.position < this.cards.length) {
+      this.position += 1
+    }
+    if(this.position === this.cards.length) {
+      this.position = 0
+    }
+    this.flipBack()
+  }
+
+  prev() {
+    if(this.position === 0) {
+      this.position = this.cards.length - 1
+    } else {
+      this.position = this.position - 1
+    }
+    this.flipBack()
+  }
+
+  flipBack() {
+    if(this.cardSide !== this.side) {
+      this.cardSide = this.side
+    }
+  }
+
+  flipCard() {
+    this.cardSide = this.cardSide === 'front' ? 'back' : 'front'
+    this.animationState = this.cardSide
+  }
+
+}

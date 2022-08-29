@@ -1,9 +1,8 @@
-import { CollectionService } from './../../services/collection.service';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IAllCollections } from '../../interfaces/collection.interface';
 import { Router } from '@angular/router';
+import { CollectionService } from '../../services/collection.service';
 
 @Component({
   selector: 'app-collections',
