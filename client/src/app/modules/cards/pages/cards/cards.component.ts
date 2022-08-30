@@ -34,7 +34,6 @@ export class CardsComponent implements OnInit {
   newCardForm!: FormGroup
 
   side = 'front'
-  position = 0
 
   constructor(
     private cardsService: CardsService,
@@ -81,7 +80,6 @@ export class CardsComponent implements OnInit {
   }
 
   shuffleCards() {
-    this.position = 0
     this.cards.sort(() => Math.random() - 0.5);
   }
 

@@ -6,6 +6,9 @@
     <div class="collection-row">
         <div class="collection-card" *ngFor="let collection of collections">
             <div class="info" (click)="openCollection(collection.collectionID)">
+                <div class="settings" (click)="$event.stopPropagation()">
+                    <span (click)="edit(collection.collectionID)" nz-icon nzType="edit" nzTheme="outline"></span>
+                </div>
                 <div class="name">
                     {{collection.name}}
                 </div>

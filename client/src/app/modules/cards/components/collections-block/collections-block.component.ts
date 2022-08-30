@@ -1,5 +1,6 @@
 import { ICollection } from './../../interfaces/collection.interface';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-collections-block [collections]',
@@ -14,7 +15,9 @@ export class CollectionsBlockComponent implements OnInit {
   
   @Output() open = new EventEmitter<number>()
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -29,5 +32,9 @@ export class CollectionsBlockComponent implements OnInit {
     const closeDate = datesNumber.filter(date => date > today)[0]
     const closeDateString = `${closeDate}`.slice(6) + '-' + `${closeDate}`.slice(4, 6) + '-' + `${closeDate}`.slice(0, 4)
     return closeDateString
+  }
+
+  edit(collectionID: number) {
+    this.router.navigate(['/learn/edit/' + collectionID])
   }
 }

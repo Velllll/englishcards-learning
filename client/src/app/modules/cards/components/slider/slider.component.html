@@ -1,12 +1,17 @@
 <div class="slider-containder">
-    <div class="navigate prev" (click)="prev()"><</div>
+    <div class="navigate prev" (click)="prev()">
+        <span nz-icon nzType="left" nzTheme="outline"></span>
+    </div>
+    
 
     <div class="card" *ngIf="cards.length" (click)="flipCard()" [@card]="animationState">
         <div class="front" *ngIf="cardSide === 'front'">{{cards[position].frontSide}}</div>
         <div class="back" *ngIf="cardSide === 'back'">{{cards[position].backSide}}</div>
     </div>
 
-    <div class="navigate next" (click)="next()">></div>
+    <div class="navigate next" (click)="next()">
+        <span nz-icon nzType="right" nzTheme="outline"></span>
+    </div>
 </div>
 
 <div class="amount">

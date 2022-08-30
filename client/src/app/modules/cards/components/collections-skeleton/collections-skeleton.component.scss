@@ -19,6 +19,19 @@
             display: grid;
             place-items: center;
             grid-template-columns: 1fr 1fr;
+
+            @media (min-width: 500px) {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            @media (min-width: 650px) {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+            @media (min-width: 800px) {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            }
+            @media (min-width: 950px) {
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+            }
             .collection-card {
                 cursor: pointer;
                 margin: 10px 0;

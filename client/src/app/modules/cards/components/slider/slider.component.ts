@@ -21,7 +21,8 @@ export class SliderComponent implements OnInit, OnChanges {
 
   @Input() cards!: ICard[]
   @Input() side!: string
-  @Input() position!: number
+  position = 0
+
   cardSide!: string
 
   animationState = 'front'

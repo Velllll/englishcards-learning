@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { IAllCollections } from './../interfaces/collection.interface';
+import { IAllCollections, ICollection } from './../interfaces/collection.interface';
 import { Injectable } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
@@ -18,4 +18,17 @@ export class CollectionService {
     })
   }
 
+  getCollection(collectionID: number) {
+    return this.http.get<ICollection>('http://localhost:5000/api/get-collection/' + collectionID, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
 }
+// function: get collection
+// type: get
+// link: /get-collection/:collectionID
+
+// function: update-collection
+// type: update
+// link: /api/update-collection
+// params: name, collectionID

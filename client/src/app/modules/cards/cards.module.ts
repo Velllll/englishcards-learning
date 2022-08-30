@@ -12,7 +12,8 @@ import { CollectionService } from './services/collection.service';
 import { CardsService } from './services/cards.service';
 import { ModalWindowComponent } from './components/modal-window/modal-window.component';
 import { SliderComponent } from './components/slider/slider.component';
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { EditCollectionComponent } from './pages/edit-collection/edit-collection.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,14 @@ import { SliderComponent } from './components/slider/slider.component';
     CollectionsSkeletonComponent,
     ModalWindowComponent,
     SliderComponent,
-    CardsComponent
+    CardsComponent,
+    EditCollectionComponent
   ],
   imports: [
     CommonModule,
     CardsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzIconModule
   ],
   providers: [
     CollectionService,

@@ -6,7 +6,7 @@
     </div>
 
     <div class="slider" *ngIf="cards.length; else empty" >
-        <app-slider [position]="position" [cards]="cards" [side]="side"></app-slider>
+        <app-slider [cards]="cards" [side]="side"></app-slider>
     </div>
 
     <ng-template #empty>

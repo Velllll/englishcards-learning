@@ -1,0 +1,29 @@
+<div class="container" *ngIf="collectionInfo$ | async as collectionInfo">
+    <div class="name">
+        <span>{{collectionInfo[0].name}}</span>
+        <span (click)="modalNameEdit()" class="edit edit-collection-name">
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </span>
+    </div>
+
+    <div class="cards-container">
+        <div class="card" *ngFor="let card of collectionInfo[1]">
+            <div class="edit" (click)="modalCardEdit()">
+                <span nz-icon nzType="edit" nzTheme="outline"></span>
+            </div>
+            <div class="card-name">{{card.frontSide}}</div>
+        </div>
+    </div>
+    
+    <div class="delete-btn">
+        <button>Delete</button>
+    </div>
+</div>
+
+<app-modal-window (close)="modalNameEdit()" *ngIf="modalNameEditState">
+
+</app-modal-window>
+
+<app-modal-window (close)="modalCardEdit()" *ngIf="modalCardEditState">
+
+</app-modal-window>
