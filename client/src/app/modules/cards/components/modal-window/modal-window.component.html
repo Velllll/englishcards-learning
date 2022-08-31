@@ -1,4 +1,4 @@
-<div class="overlay" (click)="closeModal()">
+<div [@modal]="''" class="overlay" (click)="closeModal()">
     <div class="window" (click)="$event.stopPropagation()">
         <div class="close" (click)="closeModal()">x</div>
         <ng-content></ng-content>

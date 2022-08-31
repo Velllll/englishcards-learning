@@ -49,7 +49,7 @@ class authController {
         const token = req.headers.authorization.split(' ')[1]
         try {
             if(!token) return res.json({message: 'USER IS NOT LOGIN'})
-            const payload = jwt.verify(token, secret_key)
+            const payload = jwt.verify(token, secretKey.key)
             res.json(payload)
         } catch (error) {
             res.json({message: 'USER IS NOT LOGIN'})

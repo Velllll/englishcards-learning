@@ -1,3 +1,32 @@
 .container {
     height: 100%; 
 }
+
+.modal-create {
+    text-align: center;
+
+    .title {
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    input {
+        padding: 0 10px;
+        font-size: 20px;
+        line-height: 30px;
+        height: 30px;
+        margin-top: 30px;
+        border-radius: 15px;
+    }
+    
+    button {
+        padding: 0 30px;
+        font-size: 20px;
+        line-height: 30px;
+        height: 30px;
+        margin-top: 30px;
+        border-radius: 15px;
+        background-color: #b85c38;
+        color: #f0ddc4;
+    }
+}

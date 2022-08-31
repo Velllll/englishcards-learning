@@ -20,7 +20,7 @@ import { ICard } from '../../interfaces/cards.interface';
 export class SliderComponent implements OnInit, OnChanges {
 
   @Input() cards!: ICard[]
-  @Input() side!: string
+  @Input() side: string = 'front'
   position = 0
 
   cardSide!: string
@@ -34,8 +34,7 @@ export class SliderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const side = changes['side'].currentValue
-    this.cardSide = side
+    this.cardSide = this.side
   }
 
   next() {

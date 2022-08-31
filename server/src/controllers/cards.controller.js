@@ -55,6 +55,12 @@ class CardsController {
             console.log(err)
         })
     }
+
+    async editCard(req, res) {
+        const {frontSide, backSide} = req.body
+        const userID = req.userID
+        db.query()
+    }
 }
 
 module.exports = new CardsController()

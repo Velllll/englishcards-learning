@@ -1,4 +1,9 @@
 <div class="container" *ngIf="collections$ | async as collections; else skeleton">
+    
+    <div class="btn-container">
+        <button class="add" (click)="addCollectionModal()">Add collection</button>
+    </div>
+    
     <app-collections-block 
     (open)="openCollection($event)" 
     [date]="'Learn Today'" 
@@ -17,3 +22,11 @@
 <ng-template #skeleton>
     <app-collections-skeleton></app-collections-skeleton>
 </ng-template>
+
+<app-modal-window (close)="addCollectionModal()" *ngIf="addCollectionModalState">
+    <div class="modal-create">
+        <div class="title">Create collection</div>
+        <input [(ngModel)]="collectionName" type="text">
+        <button class="button" (click)="createCollection()">Add</button>
+    </div>
+</app-modal-window>

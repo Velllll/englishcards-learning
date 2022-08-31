@@ -25,6 +25,15 @@ function: get collections
 type: get
 link: /api/get-collections
 
+function: get collection
+type: get
+link: /get-collection/:collectionID
+
+function: update-collection
+type: update
+link: /api/update-collection
+params: name, collectionID
+
 ## Cards 
 
 function: create card

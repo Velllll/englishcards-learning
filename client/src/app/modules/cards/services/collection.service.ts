@@ -23,12 +23,11 @@ export class CollectionService {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
-}
-// function: get collection
-// type: get
-// link: /get-collection/:collectionID
 
-// function: update-collection
-// type: update
-// link: /api/update-collection
-// params: name, collectionID
+  createCollection(collectionName: string) {
+    return this.http.post('http://localhost:5000/api/create-collection', {name: collectionName}, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
+
+}

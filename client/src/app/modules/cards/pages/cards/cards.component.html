@@ -5,7 +5,8 @@
         <button class="filp" (click)="flipCards()">Filp</button>
     </div>
 
-    <div class="slider" *ngIf="cards.length; else empty" >
+    
+    <div class="slider" *ngIf="cards$ | async as cards; else empty" >
         <app-slider [cards]="cards" [side]="side"></app-slider>
     </div>
 
@@ -19,7 +20,7 @@
 <app-modal-window  
     (close)="modalStateControll()" 
     *ngIf="modalState" 
-    [@modal]="modalAnimationState"
+    
 >
     <div class="title">
         Add new card

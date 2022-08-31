@@ -5,10 +5,9 @@ class CollectionController {
         const userID = req.userID
         const {name} = req.body
         const createDate = Date.now()
-        db.query('INSERT INTO collections(userID, name, createDate, repeatDates) values(?, ?, ?, ?)', [userID, name, createDate, JSON.stringify(getRepeatDates(createDate))])
+        db.query('INSERT INTO collections(userID, name, createDate, repeatDates) values(?, ?, ?, ?)', [userID, name, createDate, 'not started'])
         .then(response => {
-            console.log(response)
-            res.json(response)
+            res.json(response[0])
         })
         .catch(err => {
             console.log(err)
@@ -22,8 +21,29 @@ class CollectionController {
         .then(data => {
             const collectionsArray = data[0]
             const collections = sortCollections(collectionsArray)
-
             res.json(collections)
+        })
+    }
+
+    async getCollection(req, res) {
+        const userID = req.userID
+        const collectionID = req.params.collectionID
+        db.query("SELECT * FROM collections WHERE userID = ? AND collectionID = ?", [userID, collectionID])
+        .then(data => {
+            const collection = data[0][0]
+            res.json(collection)
+        })
+    }
+
+    async editCollection(req, res) {
+        const {name, collectionID} = req.body
+        const userID = req.userID
+        db.query("UPDATE collections SET name = ? WHERE userID = ? AND collectionID = ?", [name, userID, collectionID])
+        .then(() => {
+            res.json({status: 'success'})
+        })
+        .catch(err => {
+            res.json({status: 'error'})
         })
     }
 }
@@ -65,7 +85,7 @@ function getRepeatDates(createDate) {
         date.setDate(date.getDate() + i);
         repeatArrDates.push(date.getTime());
     };
-    return repeatArrDates;
+    return JSON.stringify(repeatArrDates);
 }
 
 module.exports = new CollectionController()

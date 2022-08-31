@@ -18,7 +18,7 @@ export class EditCollectionComponent implements OnInit {
 
   modalNameEditState = false
   modalCardEditState = false
-  
+
   constructor(
     private collectionService: CollectionService,
     private cardsService: CardsService,
@@ -36,7 +36,12 @@ export class EditCollectionComponent implements OnInit {
     this.modalNameEditState = !this.modalNameEditState
   }
 
-  modalCardEdit() {
-    this.modalCardEditState = !this.modalCardEditState
+  modalCardEditOpen(cardID: number) {
+    console.log(cardID)
+    this.modalCardEditState = true
+  }
+
+  modalCardEditClose() {
+    this.modalCardEditState = false
   }
 }
