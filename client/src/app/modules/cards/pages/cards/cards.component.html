@@ -1,13 +1,15 @@
 <div class="container">
     <div class="buttons-container">
-        <button class="add-card" (click)="modalStateControll()">Add Card</button>
-        <button class="shufle" (click)="shuffleCards()">Shuffle</button>
+        <button class="add-card" (click)="modalStateControll()">Add</button>
         <button class="filp" (click)="flipCards()">Filp</button>
+        <button [disabled]="disabledShuffle" (click)="shuffleCards()">Shuffle</button>
+        <span *ngIf=" collectionStart$ | async as repeat">
+            <button *ngIf="repeat" (click)="startLearn()">Start</button>
+        </span>
     </div>
-
     
-    <div class="slider" *ngIf="cards$ | async as cards; else empty" >
-        <app-slider [cards]="cards" [side]="side"></app-slider>
+    <div class="main-container" *ngIf="cards$ | async as cards" >
+        <app-slider *ngIf="cards.length; else empty" [cards]="cards" [side]="side"></app-slider>
     </div>
 
     <ng-template #empty>

@@ -30,4 +30,10 @@ export class CollectionService {
     })
   }
 
+  startLearn(collectionID: number) {
+    return this.http.post('http://localhost:5000/api/start-learn', {collectionID}, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
+
 }

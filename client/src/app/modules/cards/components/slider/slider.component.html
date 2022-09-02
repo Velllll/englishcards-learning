@@ -1,26 +1,29 @@
-<div class="slider-containder">
-    <div class="navigate prev" (click)="prev()">
-        <span nz-icon nzType="left" nzTheme="outline"></span>
+<div class="container" *ngIf="cards.length">
+    <div class="slider-containder">
+        <div class="navigate prev" (click)="prev()">
+            <span nz-icon nzType="left" nzTheme="outline"></span>
+        </div>
+        
+    
+        <div class="card"  (click)="flipCard()" [@card]="animationState">
+            <div class="front" *ngIf="cardSide === 'front'">{{cards[position].frontSide}}</div>
+            <div class="back" *ngIf="cardSide === 'back'">{{cards[position].backSide}}</div>
+        </div>
+    
+        <div class="navigate next" (click)="next()">
+            <span nz-icon nzType="right" nzTheme="outline"></span>
+        </div>
     </div>
     
-
-    <div class="card" *ngIf="cards.length" (click)="flipCard()" [@card]="animationState">
-        <div class="front" *ngIf="cardSide === 'front'">{{cards[position].frontSide}}</div>
-        <div class="back" *ngIf="cardSide === 'back'">{{cards[position].backSide}}</div>
-    </div>
-
-    <div class="navigate next" (click)="next()">
-        <span nz-icon nzType="right" nzTheme="outline"></span>
+    <div class="amount">
+        <div class="pos">
+            {{position + 1}}
+        </div>
+        <span >/</span>
+        <div class="pos">
+            {{cards.length}}
+        </div>
+    
     </div>
 </div>
 
-<div class="amount">
-    <div class="pos">
-        {{position + 1}}
-    </div>
-    <span >/</span>
-    <div class="pos">
-        {{cards.length}}
-    </div>
-
-</div>

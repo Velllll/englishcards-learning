@@ -1,6 +1,8 @@
 <div [@modal]="''" class="overlay" (click)="closeModal()">
     <div class="window" (click)="$event.stopPropagation()">
-        <div class="close" (click)="closeModal()">x</div>
+        <div class="close" (click)="closeModal()">
+            <span nz-icon nzType="close" nzTheme="outline"></span>
+        </div>
         <ng-content></ng-content>
     </div>
 </div>

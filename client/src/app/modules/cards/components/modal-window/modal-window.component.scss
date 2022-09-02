@@ -8,21 +8,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .window {
         width: 70%;
         max-width: 500px;
         background-color: #f0ddc4;
         padding: 20px;
         position: relative;
-        border-radius: 20px;
+        border-radius: 30px;
         color: #2c2525;
 
         .close{
             color: #2c2525;
             cursor: pointer;
             position: absolute;
-            right: 10px;
-            top: 5px;
+            right: 20px;
+            top: 20px;
             font-size: 15px;
         }
     }

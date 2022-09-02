@@ -39,7 +39,9 @@
             border-radius: 30px;
             padding: 10px;
             color: rgb(0, 0, 0);
-
+            word-wrap: break-word;
+            word-break: break-all;
+            
             .name {
                 display: flex;
                 justify-content: center;

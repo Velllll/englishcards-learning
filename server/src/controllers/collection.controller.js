@@ -30,8 +30,13 @@ class CollectionController {
         const collectionID = req.params.collectionID
         db.query("SELECT * FROM collections WHERE userID = ? AND collectionID = ?", [userID, collectionID])
         .then(data => {
-            const collection = data[0][0]
-            res.json(collection)
+            if(data[0][0].repeatDates !== 'not started') {
+                const arrRepeat = JSON.parse(data[0][0].repeatDates)
+                const collection = {...data[0][0], repeatDates: arrRepeat}
+                res.json(collection)
+            } else {
+                res.json(data[0][0])
+            }
         })
     }
 
@@ -40,10 +45,28 @@ class CollectionController {
         const userID = req.userID
         db.query("UPDATE collections SET name = ? WHERE userID = ? AND collectionID = ?", [name, userID, collectionID])
         .then(() => {
-            res.json({status: 'success'})
+            res.json({status: 'successfully'})
         })
         .catch(err => {
             res.json({status: 'error'})
+        })
+    }
+
+    async startLearnCollection(req, res) {
+        const userID = req.userID
+        const {collectionID} = req.body
+        const startToday = Date.now()
+        db.query("UPDATE collections SET repeatDates = ? WHERE userID = ? AND collectionID = ?", [
+            getRepeatDates(startToday), 
+            userID,
+            collectionID
+        ])
+        .then(() => {
+            res.json({status: 'successfully'})
+        })
+        .catch(err => {
+            console.log(err)
+            res.json(err.message)
         })
     }
 }
@@ -72,7 +95,6 @@ function sortCollections(collectionsArray) {
                 collection.late.push(item)
             }
         }
-        
     })
     return collection
 }
