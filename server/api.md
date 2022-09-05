@@ -39,6 +39,11 @@ type: post
 link: /api/start-learn
 params: collectionID
 
+function: update collection's name
+type: put
+link: /api/update-collection
+params: name, collectionID
+
 ## Cards 
 
 function: create card

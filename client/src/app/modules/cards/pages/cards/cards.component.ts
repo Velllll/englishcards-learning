@@ -1,8 +1,8 @@
 import { CollectionService } from './../../services/collection.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
-import { map, Observable, switchMap, take, BehaviorSubject, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, Observable, switchMap, take, BehaviorSubject, tap, mapTo } from 'rxjs';
 import { ICard } from '../../interfaces/cards.interface';
 import { CardsService } from '../../services/cards.service';
 
@@ -19,8 +19,7 @@ export class CardsComponent implements OnInit {
   modalState = false
   disabledShuffle = false
 
-  cards$!: Observable<ICard[]>
-  refreshCards$ = new BehaviorSubject('get')
+  cards$!: BehaviorSubject<ICard[]>
   collectionStart$!: Observable<boolean>
   newCardForm!: FormGroup
 
@@ -34,19 +33,15 @@ export class CardsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cards$ = this.collectionID$.pipe(
-      switchMap(params => {
-        return this.refreshCards$.pipe(switchMap((data: any) => {
-            if(data === 'shuffle') {
-              return this.cardsService.getCardsFromCollection(params['collectionID']).pipe(
-                map(i => i.sort(() => Math.random() - 0.5))
-              )
-            } else {
-              return this.cardsService.getCardsFromCollection(params['collectionID'])
-            }
-          }))
+    this.collectionID$
+      .pipe(
+        switchMap(params => this.cardsService.getCardsFromCollection(params['collectionID'])),
+        take(1),
+      )
+      .subscribe(data => {
+        this.cards$ = new BehaviorSubject(data)
       })
-    )
+
 
     this.collectionStart$ = this.collectionID$.pipe(
       switchMap(params => {
@@ -68,14 +63,26 @@ export class CardsComponent implements OnInit {
   addCard() {
     this.collectionID$.pipe(
       switchMap(params => {
+        const collectionID = params['collectionID']
         return this.cardsService.createCard(
-          params['collectionID'],
+          collectionID,
           this.newCardForm.value.front,
           this.newCardForm.value.back
         )
+        .pipe(
+          map(i => {
+            return {...i, collectionID}
+          })
+        )
       }),
-      tap(() => {
-        this.refreshCards$.next('get')
+      tap((data: any) => {
+        const cards: ICard[] = this.getCardsWithNewCard(
+          this.newCardForm.value.back,
+          this.newCardForm.value.front,
+          data.cardID,
+          data.collectionID,
+        )
+        this.cards$.next(cards)
         this.modalStateControll()
         this.newCardForm.setValue({
           front: '',
@@ -85,7 +92,17 @@ export class CardsComponent implements OnInit {
       take(1)
     )
     .subscribe()
-    
+  }
+
+  getCardsWithNewCard(backSide: string, frontSide: string, cardID: number, collectionID: number) {
+    const newCard: ICard = {
+      backSide,
+      frontSide,
+      cardID,
+      collectionID,
+    }
+    const cards = [...this.cards$.getValue(), newCard]
+    return cards
   }
 
   flipCards() {
@@ -93,9 +110,9 @@ export class CardsComponent implements OnInit {
   }
 
   shuffleCards() {
-    this.disabledShuffle = true
-    this.refreshCards$.next('shuffle')
-    setTimeout(() => this.disabledShuffle = false, 5000)
+    const cards = [...this.cards$.getValue()]
+    cards.sort(() => Math.random() - 0.5)
+    this.cards$.next(cards)
   }
 
   startLearn() {

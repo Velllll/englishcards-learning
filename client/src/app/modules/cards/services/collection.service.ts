@@ -36,4 +36,9 @@ export class CollectionService {
     })
   }
 
+  updateCollectionName(collectionID: number, newName: string) {
+    return this.http.put('http://localhost:5000/api/update-collection', {collectionID, name: newName}, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
 }
