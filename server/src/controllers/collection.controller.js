@@ -38,6 +38,10 @@ class CollectionController {
                 res.json(data[0][0])
             }
         })
+        .catch(err => {
+            console.log(err)
+            res.json({error: 'collection does not exist'})
+        })
     }
 
     async editCollection(req, res) {
@@ -66,6 +70,19 @@ class CollectionController {
         })
         .catch(err => {
             console.log(err)
+            res.json(err.message)
+        })
+    }
+
+    async deleteCollection(req, res) {
+        const userID = req.userID
+        const collectionID = req.params.collectionID
+        db.query("DELETE FROM collections WHERE userID = ? AND collectionID = ?", [userID, collectionID])
+        .then(() => {
+            res.json({message: `collection was deleted`})
+        })
+        .catch(err => {
+            console.log(err.message)
             res.json(err.message)
         })
     }

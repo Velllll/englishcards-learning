@@ -2,7 +2,7 @@ import { ICard } from './../../interfaces/cards.interface';
 import { ICollection } from './../../interfaces/collection.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { combineLatest, switchMap, tap, BehaviorSubject, take} from 'rxjs';
+import { combineLatest, switchMap, tap, BehaviorSubject, take, map} from 'rxjs';
 import { CollectionService } from '../../services/collection.service';
 import { CardsService } from '../../services/cards.service';
 
@@ -40,8 +40,16 @@ export class EditCollectionComponent implements OnInit {
       })
     )
     combineLatest(collection, cards)
-      .pipe(take(1))
-      .subscribe(data => this.collectionInfo$ = new BehaviorSubject(data))
+      .pipe(
+        take(1))
+      .subscribe((data: any) => {
+        if(!data[0]?.error) {
+          this.collectionInfo$ = new BehaviorSubject(data)
+        } else {
+          this.router.navigate(['/learn/collections'])
+        }
+        
+      })
   }
 
   modalNameEdit() {
@@ -73,4 +81,17 @@ export class EditCollectionComponent implements OnInit {
     .subscribe()
   }
 
+  deleteCollection() {
+    this.collectionID$.pipe(
+      switchMap(params => {
+        const collectionID = params['collectionID']
+        return this.collectionService.deleteCollection(collectionID)
+      }),
+      tap(() => {
+        this.router.navigate(['/learn/collections'])
+      }),
+      take(1)
+    )
+    .subscribe()
+  }
 }

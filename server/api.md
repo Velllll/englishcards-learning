@@ -44,6 +44,10 @@ type: put
 link: /api/update-collection
 params: name, collectionID
 
+function: delete collection
+type: delete
+link: /delete-collection/:collectionID
+
 ## Cards 
 
 function: create card

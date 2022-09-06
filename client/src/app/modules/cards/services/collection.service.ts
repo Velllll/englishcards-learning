@@ -41,4 +41,10 @@ export class CollectionService {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
+
+  deleteCollection(collectionID: number) {
+    return this.http.delete('http://localhost:5000/api/delete-collection/' + collectionID, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  } 
 }

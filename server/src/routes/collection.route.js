@@ -9,5 +9,6 @@ route.post('/start-learn',checkUsetMiddleware, collectionController.startLearnCo
 route.get('/get-collections',checkUsetMiddleware, collectionController.getCollections)
 route.get('/get-collection/:collectionID',checkUsetMiddleware, collectionController.getCollection)
 route.put('/update-collection', checkUsetMiddleware, collectionController.editCollection)
+route.delete('/delete-collection/:collectionID', checkUsetMiddleware, collectionController.deleteCollection)
 
 module.exports = route
