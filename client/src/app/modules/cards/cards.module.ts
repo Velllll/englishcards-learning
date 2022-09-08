@@ -14,6 +14,7 @@ import { ModalWindowComponent } from './components/modal-window/modal-window.com
 import { SliderComponent } from './components/slider/slider.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { EditCollectionComponent } from './pages/edit-collection/edit-collection.component';
+import { EditCardComponent } from './components/edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditCollectionComponent } from './pages/edit-collection/edit-collection
     ModalWindowComponent,
     SliderComponent,
     CardsComponent,
-    EditCollectionComponent
+    EditCollectionComponent,
+    EditCardComponent
   ],
   imports: [
     CommonModule,

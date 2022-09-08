@@ -66,3 +66,8 @@ link: /api/get-all-cards
 function: get card
 type: get
 link: /api/get-card/:cardID
+
+function: update card
+type: put
+link: /api/update-card
+params: frontSide, backSide, collectionID, cardID

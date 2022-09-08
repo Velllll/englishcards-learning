@@ -2,7 +2,7 @@ import { ICard } from './../interfaces/cards.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class CardsService {
@@ -35,8 +35,20 @@ export class CardsService {
     })
   }
 
-  getCard(cardID: number) {
-    return this.http.get('http://localhost:5000/api/get-card/' + cardID, {
+  getCard(cardID: number): Observable<ICard> {
+    return this.http.get<ICard>('http://localhost:5000/api/get-card/' + cardID, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
+
+  updateCard(cardID: number, collectionID: number, frontSide: string, backSide: string) {
+    const cardInfo = {
+      cardID,
+      collectionID,
+      frontSide,
+      backSide
+    }
+    return this.http.put<ICard>('http://localhost:5000/api/update-card', cardInfo, {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }

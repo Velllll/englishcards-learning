@@ -57,9 +57,21 @@ class CardsController {
     }
 
     async editCard(req, res) {
-        const {frontSide, backSide} = req.body
+        const {frontSide, backSide, collectionID, cardID} = req.body
         const userID = req.userID
-        db.query()
+        db.query("UPDATE cards SET frontSide = ?, backSide = ? WHERE collectionID = ? AND cardID = ? AND userID = ?", [
+            frontSide,
+            backSide, 
+            collectionID,
+            cardID,
+            userID,
+        ])
+        .then(() => {
+            res.json({message: 'card updated'})
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 

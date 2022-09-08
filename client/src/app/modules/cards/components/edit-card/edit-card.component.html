@@ -1,0 +1,11 @@
+<div class="container">
+    <h2 class="title">Edit card</h2>
+    <form [formGroup]="cardForm">
+        <input formControlName="frontSide" [value]="cardForm.value.frontSide" type="text">
+        <input formControlName="backSide" [value]="cardForm.value.backSide" type="text">
+    </form>
+    <div class="btn">
+        <button (click)="saveCard()">Save</button>
+        <button (click)="deleteCard()">Delete</button>
+    </div>
+</div>

@@ -7,12 +7,15 @@
     </div>
 
     <div class="cards-container">
-        <div class="card" (click)="modalCardEditOpen()" *ngFor="let card of collectionInfo[1]">
-            <div class="edit" >
-                <span nz-icon nzType="edit" nzTheme="outline"></span>
+        <ng-container *ngFor="let card of collectionInfo[1]">
+            <div class="card" (click)="modalCardEditOpen(card.cardID)">
+                <div class="edit" >
+                    <span nz-icon nzType="edit" nzTheme="outline"></span>
+                </div>
+                <div class="card-name">{{card.frontSide}}</div>
             </div>
-            <div class="card-name">{{card.frontSide}}</div>
-        </div>
+        </ng-container>
+
     </div>
     
     <div class="delete-btn">
@@ -31,5 +34,14 @@
 </app-modal-window>
 
 <app-modal-window (close)="modalCardEditClose()" *ngIf="modalCardEditState">
+    <ng-container *ngIf="card$ | async as card">
+        <app-edit-card 
+            [frontSide]="card.frontSide"
+            [backSide]="card.backSide"
+            [cardID]="card.cardID"
+            (save)="saveCard($event)"
+            (delete)="deleteCard()"
+        ></app-edit-card>
+    </ng-container>
 
 </app-modal-window>

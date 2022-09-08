@@ -4,3 +4,9 @@ export interface ICard {
     frontSide: string;
     backSide: string;
 }
+
+export interface ICardForm {
+    frontSide: string,
+    backSide: string,
+    cardID: number
+}

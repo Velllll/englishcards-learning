@@ -24,9 +24,6 @@ export class RegistrationComponent implements OnInit {
       "email": new FormControl('', 
       [Validators.required, Validators.email]
       ),
-      "name": new FormControl('', 
-      [Validators.required]
-      ),
       "password": new FormControl('', 
       [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]
       )
