@@ -6,14 +6,14 @@ import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class CardsService {
-
+  url: string = "http://localhost:5000/"
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) { }
 
   getCardsFromCollection(collectionID: number): Observable<ICard[]> {
-    return this.http.get<ICard[]>('http://localhost:5000/api/get-cards/' + collectionID, {
+    return this.http.get<ICard[]>(this.url + 'api/get-cards/' + collectionID, {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
@@ -24,19 +24,19 @@ export class CardsService {
       frontSide,
       backSide
     }
-    return this.http.post('http://localhost:5000/api/create-card', data, {
+    return this.http.post(this.url + 'api/create-card', data, {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
 
   getAllCards() {
-    return this.http.get('http://localhost:5000/api/get-all-cards', {
+    return this.http.get(this.url + 'api/get-all-cards', {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
 
   getCard(cardID: number): Observable<ICard> {
-    return this.http.get<ICard>('http://localhost:5000/api/get-card/' + cardID, {
+    return this.http.get<ICard>(this.url + 'api/get-card/' + cardID, {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }
@@ -48,7 +48,13 @@ export class CardsService {
       frontSide,
       backSide
     }
-    return this.http.put<ICard>('http://localhost:5000/api/update-card', cardInfo, {
+    return this.http.put<ICard>(this.url + 'api/update-card', cardInfo, {
+      headers: {"Authorization": "Bearer " + this.authService.getToken()}
+    })
+  }
+
+  deleteCard(cardID: number) {
+    return this.http.delete<ICard>(this.url + 'api/delete-card/' + cardID, {
       headers: {"Authorization": "Bearer " + this.authService.getToken()}
     })
   }

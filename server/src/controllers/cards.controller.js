@@ -73,6 +73,18 @@ class CardsController {
             console.log(err)
         })
     }
+
+    async deleteCard(req, res) {
+        const cardID = req.params.cardID
+        const userID = req.userID
+        db.query('DELETE FROM cards WHERE cardID = ? AND userID = ?', [cardID, userID])
+        .then(() => {
+            res.json({message: 'card was delete'})
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 }
 
 module.exports = new CardsController()

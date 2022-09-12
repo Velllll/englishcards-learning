@@ -115,7 +115,13 @@ export class EditCollectionComponent implements OnInit {
     .subscribe()
   }
 
-  deleteCard() {
-
+  deleteCard(cardID: number) {
+    this.cardsService.deleteCard(cardID).pipe(take(1)).subscribe()
+    const data = this.collectionInfo$.getValue()
+    const newCardArray: ICard[] = data[1].filter(cards => cards.cardID !== cardID)
+    const collection: ICollection = data[0]
+    const newData: [ICollection, ICard[]] = [collection, newCardArray]
+    this.collectionInfo$.next(newData)
+    this.modalCardEditClose()
   }
 }

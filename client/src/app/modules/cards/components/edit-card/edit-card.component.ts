@@ -14,7 +14,7 @@ export class EditCardComponent implements OnInit {
   @Input('cardID') cardID!: number
 
   @Output() save = new EventEmitter<ICardForm>()
-  @Output() delete = new EventEmitter()
+  @Output() delete = new EventEmitter<number>()
   
   cardForm!: FormGroup
 
@@ -33,6 +33,6 @@ export class EditCardComponent implements OnInit {
   }
 
   deleteCard() {
-    this.delete.emit()
+    this.delete.emit(this.cardID)
   }
 }

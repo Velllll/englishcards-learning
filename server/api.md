@@ -71,3 +71,7 @@ function: update card
 type: put
 link: /api/update-card
 params: frontSide, backSide, collectionID, cardID
+
+function: delete card
+type: delete
+link: /delete-card/:cardID

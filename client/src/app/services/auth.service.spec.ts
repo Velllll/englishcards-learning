@@ -14,8 +14,6 @@ const fakeHttpClient = {
 
 fdescribe('AuthService', () => {
   let service: AuthService;
-  let router: Router
-  let http: HttpClient
 
   beforeEach(() => {
     TestBed.configureTestingModule({
