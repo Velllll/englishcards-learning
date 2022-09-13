@@ -45,7 +45,6 @@ export class EditCollectionComponent implements OnInit {
       .pipe(
         take(1))
       .subscribe((data: any) => {
-        console.log(data)
         if(!data[0]?.error) {
           this.collectionInfo$ = new BehaviorSubject(data)
         } else {

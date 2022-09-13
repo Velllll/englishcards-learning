@@ -1,4 +1,4 @@
-<div class="container" *ngIf="collectionInfo$ | async as collectionInfo">
+<div class="container" *ngIf="collectionInfo$ | async as collectionInfo; else skeleton">
     <div class="name">
         <span>{{collectionInfo[0]!.name}}</span>
         <span (click)="modalNameEdit()" class="edit edit-collection-name">
@@ -22,6 +22,10 @@
         <button (click)="deleteCollection()">Delete</button>
     </div>
 </div>
+
+<ng-template #skeleton>
+    <app-edit-skeleton></app-edit-skeleton>
+</ng-template>
 
 <app-modal-window (close)="modalNameEdit()" *ngIf="modalNameEditState">
     <div class="maodal-name-container">

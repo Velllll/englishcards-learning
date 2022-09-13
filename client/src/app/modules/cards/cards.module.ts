@@ -15,6 +15,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { EditCollectionComponent } from './pages/edit-collection/edit-collection.component';
 import { EditCardComponent } from './components/edit-card/edit-card.component';
+import { EditSkeletonComponent } from './components/edit-skeleton/edit-skeleton.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditCardComponent } from './components/edit-card/edit-card.component';
     SliderComponent,
     CardsComponent,
     EditCollectionComponent,
-    EditCardComponent
+    EditCardComponent,
+    EditSkeletonComponent
   ],
   imports: [
     CommonModule,
